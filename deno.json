@@ -1,0 +1,12 @@
+{
+    "imports": {
+        "langchain": "npm:/langchain",
+        "@langchain/openai": "npm:/@langchain/openai",
+        "@langchain/core": "npm:/@langchain/core",
+        "@langchain/ollama": "npm:/@langchain/ollama",
+        "@langchain/deepseek": "npm:/@langchain/deepseek",
+        "@langchain/community": "npm:/@langchain/community",
+        "dotenv": "https://deno.land/std@0.220.0/dotenv/mod.ts"
+    },
+    "deno.enable": true
+}
