@@ -6,7 +6,13 @@
         "@langchain/ollama": "npm:/@langchain/ollama",
         "@langchain/deepseek": "npm:/@langchain/deepseek",
         "@langchain/community": "npm:/@langchain/community",
-        "dotenv": "https://deno.land/std@0.220.0/dotenv/mod.ts"
+        "dotenv": "https://deno.land/std@0.220.0/dotenv/mod.ts",
+        "zod": "npm:/zod",
+        "pdf-parse": "npm:/pdf-parse",
+        "mammoth": "npm:/mammoth",
+        "officeparser": "npm:/officeparser",
+        "ignore": "npm:/ignore",
+        "cheerio": "npm:/cheerio"
     },
     "deno.enable": true
 }
