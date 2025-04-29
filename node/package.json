@@ -1,0 +1,17 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/community": "^0.3.41",
+    "@langchain/core": "^0.3.49",
+    "@langchain/openai": "^0.5.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "faiss-node": "^0.5.1",
+    "langchain": "^0.3.24",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
