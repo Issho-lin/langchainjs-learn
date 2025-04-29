@@ -1,0 +1,214 @@
+[
+    [
+        [
+            "402c3889-ba1e-419f-a746-af1851a82526",
+            {
+                "pageContent": "WebRTC与AI的结合已经催生了许多创新的应用案例，覆盖了多个行业和场景。以下是5个典型的应用案例，展示了WebRTC与AI技术的深度融合：\n一、实时语音翻译与字幕生成",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 1,
+                            "to": 2
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "759b1c02-5fe2-4921-aab1-e395477e5393",
+            {
+                "pageContent": "一、实时语音翻译与字幕生成\n应用场景：在线会议、跨国远程协作、在线教育。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 2,
+                            "to": 3
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "5449d52d-cfc1-4c5d-b759-817a782629c9",
+            {
+                "pageContent": "技术实现：WebRTC提供实时音视频传输，AI通过语音识别（ASR）将语音转化为文本，并结合自然语言处理（NLP）进行实时翻译和字幕生成。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 4,
+                            "to": 4
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "ee32cc8b-74fb-499d-82ed-873c63ed3957",
+            {
+                "pageContent": "案例：Zoom、Microsoft Teams等平台已经集成了实时翻译功能，帮助用户跨越语言障碍。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 5,
+                            "to": 5
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "c35c138c-f014-4921-be42-7cde6832363b",
+            {
+                "pageContent": "二、智能视频分析与监控\n应用场景：安防监控、零售分析、智能家居。\n技术实现：WebRTC传输实时视频流，AI通过计算机视觉（CV）技术进行人脸识别、行为分析、物体检测等。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 7,
+                            "to": 9
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "587bea3a-bf6b-4157-82df-66ff5a47266d",
+            {
+                "pageContent": "案例：零售商店利用WebRTC+AI分析顾客行为，优化商品摆放和营销策略；智能家居系统通过视频监控识别异常行为并发出警报。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 10,
+                            "to": 10
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "5e6132f3-0e96-48ae-a2a9-7f5beabd3673",
+            {
+                "pageContent": "三、虚拟助手与实时互动\n应用场景：在线客服、虚拟导购、智能教育助手。\n技术实现：WebRTC提供实时音视频交互能力，AI通过语音识别和自然语言处理理解用户需求，并提供智能回复或引导。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 12,
+                            "to": 14
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "852a8e2b-60fd-4179-b123-8d00c5491a64",
+            {
+                "pageContent": "案例：电商平台使用虚拟导购助手，通过WebRTC与用户实时互动，推荐商品并解答问题。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 15,
+                            "to": 15
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "d531e637-525b-49e8-903c-78ebacb9315a",
+            {
+                "pageContent": "四、远程医疗与健康监测\n应用场景：远程问诊、健康监测、康复指导。\n技术实现：WebRTC实现医生与患者的实时音视频通信，AI通过图像识别分析医疗影像（如X光片），或通过语音识别记录患者病情描述。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 17,
+                            "to": 19
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "705351d5-8332-46aa-b361-ed031f6f16c6",
+            {
+                "pageContent": "案例：远程医疗平台利用WebRTC+AI技术，为偏远地区患者提供高质量的医疗服务。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 20,
+                            "to": 20
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "24862115-ffa9-4d76-8236-10b9f2598757",
+            {
+                "pageContent": "五、沉浸式虚拟会议与AI增强\n应用场景：元宇宙会议、虚拟协作空间。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 22,
+                            "to": 23
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "8eb18962-76b3-44a0-97ac-6a12ec66d98d",
+            {
+                "pageContent": "应用场景：元宇宙会议、虚拟协作空间。\n技术实现：WebRTC提供实时音视频传输，AI通过增强现实（AR）和虚拟现实（VR）技术创建虚拟会议环境，并结合语音识别、情感分析等技术提升会议体验。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 23,
+                            "to": 24
+                        }
+                    }
+                }
+            }
+        ],
+        [
+            "321baf96-5126-47c3-ac8e-cf18dae3585a",
+            {
+                "pageContent": "案例：Meta的Horizon Workrooms等平台利用WebRTC+AI技术，打造沉浸式虚拟会议空间。",
+                "metadata": {
+                    "source": "../documents/data.txt",
+                    "loc": {
+                        "lines": {
+                            "from": 25,
+                            "to": 25
+                        }
+                    }
+                }
+            }
+        ]
+    ],
+    {
+        "0": "402c3889-ba1e-419f-a746-af1851a82526",
+        "1": "759b1c02-5fe2-4921-aab1-e395477e5393",
+        "2": "5449d52d-cfc1-4c5d-b759-817a782629c9",
+        "3": "ee32cc8b-74fb-499d-82ed-873c63ed3957",
+        "4": "c35c138c-f014-4921-be42-7cde6832363b",
+        "5": "587bea3a-bf6b-4157-82df-66ff5a47266d",
+        "6": "5e6132f3-0e96-48ae-a2a9-7f5beabd3673",
+        "7": "852a8e2b-60fd-4179-b123-8d00c5491a64",
+        "8": "d531e637-525b-49e8-903c-78ebacb9315a",
+        "9": "705351d5-8332-46aa-b361-ed031f6f16c6",
+        "10": "24862115-ffa9-4d76-8236-10b9f2598757",
+        "11": "8eb18962-76b3-44a0-97ac-6a12ec66d98d",
+        "12": "321baf96-5126-47c3-ac8e-cf18dae3585a"
+    }
+]
