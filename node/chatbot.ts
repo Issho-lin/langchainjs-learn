@@ -7,6 +7,7 @@ import { RunnableSequence } from "@langchain/core/runnables";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
+
 const embeddings = new OpenAIEmbeddings({
   model: process.env.EMBEDDING_MODEL_NAME,
   batchSize: 20,
@@ -34,9 +35,8 @@ async function buildVectorStore() {
   const vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
   await vectorStore.save("../db/chatbot");
 }
-// buildVectorStore();
 
-async function chat(qs: string) {
+export async function chat(qs: string) {
   // 加载向量库
   const vectorStore = await FaissStore.load("../db/chatbot", embeddings);
 
@@ -118,4 +118,10 @@ const SYSTEM_TEMPLATE = `
   }
 }
 
-chat("什么是球状闪电？");
+
+async function main() {
+  await buildVectorStore();
+  await chat("书中有哪些人物");
+}
+
+main();
