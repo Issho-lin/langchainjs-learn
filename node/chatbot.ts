@@ -8,16 +8,17 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
 
-const embeddings = new OpenAIEmbeddings({
-  model: process.env.EMBEDDING_MODEL_NAME,
-  batchSize: 20,
-  configuration: {
-    baseURL: process.env.BASE_URL,
-    apiKey: process.env.OPENAI_API_KEY,
-  },
-});
+
 
 async function buildVectorStore() {
+  const embeddings = new OpenAIEmbeddings({
+    model: process.env.EMBEDDING_MODEL_NAME,
+    batchSize: 20,
+    configuration: {
+      baseURL: process.env.BASE_URL,
+      apiKey: process.env.OPENAI_API_KEY,
+    },
+  });
   // 导入知识库
   const loader = new TextLoader("../documents/chatbot.txt");
   const docs = await loader.load();
@@ -37,6 +38,14 @@ async function buildVectorStore() {
 }
 
 export async function chat(qs: string) {
+  const embeddings = new OpenAIEmbeddings({
+    model: process.env.EMBEDDING_MODEL_NAME,
+    batchSize: 20,
+    configuration: {
+      baseURL: process.env.BASE_URL,
+      apiKey: process.env.OPENAI_API_KEY,
+    },
+  });
   // 加载向量库
   const vectorStore = await FaissStore.load("../db/chatbot", embeddings);
 
@@ -49,14 +58,20 @@ export async function chat(qs: string) {
   const contextRetrieverChain = RunnableSequence.from([
     (input: any) => input.question,
     retriever,
+    // (output: any) => {
+    //   console.log('output------', output);
+    //   return output;
+    // },
     convertDocsToString,
   ]);
+
+  // process.env.LANGCHAIN_VERBOSE = "true"
   //   查找关联上下文
   const context = await contextRetrieverChain.invoke({
     question: qs,
   });
 
-  console.log(context);
+  console.log('context------', context);
 
   const llm = new ChatOpenAI({
     model: process.env.MODEL_NAME,
@@ -107,21 +122,21 @@ const SYSTEM_TEMPLATE = `
     outputParser,
   ]);
 
-  // const rst = await chain.invoke({
-  //   question: qs,
-  // });
-  // console.log('===========\n')
-  // console.log(rst);
+  const rst = await chain.invoke({
+    question: qs,
+  });
+  console.log('===========\n')
+  console.log(rst);
 
-  for await (const chunk of await chain.stream({ question: qs })) {
-    console.log(chunk);
-  }
+  // for await (const chunk of await chain.stream({ question: qs })) {
+  //   console.log(chunk);
+  // }
 }
 
 
 async function main() {
-  await buildVectorStore();
-  await chat("书中有哪些人物");
+  // await buildVectorStore();
+  await chat("选修课有哪些？");
 }
 
 main();
