@@ -2,7 +2,7 @@
  * @Author: linqibin
  * @Date: 2025-05-06 10:43:26
  * @LastEditors: linqibin
- * @LastEditTime: 2025-05-06 11:10:56
+ * @LastEditTime: 2025-05-07 16:43:58
  * @Description:
  *
  * Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved.
@@ -14,7 +14,7 @@ import path from "node:path";
 
 export interface JSONChatHistoryInput {
   sessionId: string;
-  dir: string;
+  dir?: string;
 }
 
 export class JSONChatHistory extends BaseListChatMessageHistory  {
@@ -26,11 +26,12 @@ export class JSONChatHistory extends BaseListChatMessageHistory  {
   constructor(fields: JSONChatHistoryInput) {
     super(fields);
     this.sessionId = fields.sessionId;
-    this.dir = fields.dir;
+    this.dir = path.resolve(__dirname, '../../', fields.dir ?? "chat_data")
+    console.log("chat history dir:", process.cwd())
   }
 
   async getMessages(): Promise<BaseMessage[]> {
-    const filePath = path.join(this.dir, `${this.sessionId}.json`);
+    const filePath = path.resolve(this.dir, `${this.sessionId}.json`);
     try {
       if (!fs.existsSync(filePath)) {
         this.saveMessagesToFile([]);
@@ -58,7 +59,7 @@ export class JSONChatHistory extends BaseListChatMessageHistory  {
   }
 
   async clear(): Promise<void> {
-    const filePath = path.join(this.dir, `${this.sessionId}.json`);
+    const filePath = path.resolve(this.dir, `${this.sessionId}.json`);
     try {
       fs.unlinkSync(filePath);
     } catch (error) {
@@ -67,7 +68,14 @@ export class JSONChatHistory extends BaseListChatMessageHistory  {
   }
 
   private async saveMessagesToFile(messages: BaseMessage[]): Promise<void> {
-    const filePath = path.join(this.dir, `${this.sessionId}.json`);
+    const filePath = path.resolve(this.dir, `${this.sessionId}.json`);
+
+    console.log(filePath)
+    // 确保目录存在，不存在则创建
+    if (!fs.existsSync(this.dir)) {
+      console.log('mkdir')
+      fs.mkdirSync(this.dir, { recursive: true });
+    }
     const serializedMessages = mapChatMessagesToStoredMessages(messages);
     try {
       fs.writeFileSync(filePath, JSON.stringify(serializedMessages, null, 2), { encoding: "utf-8" });

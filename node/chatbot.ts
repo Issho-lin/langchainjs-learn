@@ -3,12 +3,17 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import "dotenv/config";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
-import { RunnableSequence } from "@langchain/core/runnables";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
+import {
+  RunnablePassthrough,
+  RunnableSequence,
+  RunnableWithMessageHistory,
+} from "@langchain/core/runnables";
+import {
+  ChatPromptTemplate,
+  MessagesPlaceholder,
+} from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
-
-
-
+import { JSONChatHistory } from "./history/index";
 
 async function buildVectorStore() {
   const embeddings = new OpenAIEmbeddings({
@@ -46,6 +51,29 @@ export async function chat(qs: string) {
       apiKey: process.env.OPENAI_API_KEY,
     },
   });
+  const rephraseModel = new ChatOpenAI({
+    model: process.env.MODEL_NAME,
+    temperature: 0.2,
+    configuration: {
+      baseURL: process.env.BASE_URL,
+      apiKey: process.env.OPENAI_API_KEY,
+    },
+  });
+  // 矫正提问
+  const rephrasePrompt = ChatPromptTemplate.fromMessages([
+    [
+      "system",
+      `给定以下对话和一个后续问题，请将后续问题重述为一个独立的问题。请注意，重述的问题应该包含足够的信息，使得没有看过对话历史的人也能理解。
+      `,
+    ],
+    new MessagesPlaceholder("history"),
+    ["human", "将这个问题重述为一个独立的问题：{question}"],
+  ]);
+
+  const rephraseChain = rephrasePrompt
+    .pipe(rephraseModel)
+    .pipe(new StringOutputParser());
+
   // 加载向量库
   const vectorStore = await FaissStore.load("../db/chatbot", embeddings);
 
@@ -58,21 +86,34 @@ export async function chat(qs: string) {
   const contextRetrieverChain = RunnableSequence.from([
     (input: any) => input.question,
     retriever,
-    // (output: any) => {
-    //   console.log('output------', output);
-    //   return output;
-    // },
     convertDocsToString,
   ]);
 
   // process.env.LANGCHAIN_VERBOSE = "true"
   //   查找关联上下文
-  const context = await contextRetrieverChain.invoke({
-    question: qs,
-  });
+  // const context = await contextRetrieverChain.invoke({
+  //   question: qs,
+  // });
 
-  console.log('context------', context);
+  // console.log("context------", context);
 
+  // 构建prompt
+  const SYSTEM_TEMPLATE = `
+你是一个熟知内部知识库的机器人，你在回答时会引用知识库，并擅长通过自己的总结归纳，组织语言给出答案。
+并且回答时仅根据知识库，尽可能回答用户问题，如果知识库中没有相关内容，你可以从历史记录中找答案，如果历史记录也没有相关内容，你可以回答“原文中没有相关内容”，不要回答知识库以外的内容。
+ 以下是原文中跟用户回答相关的内容：
+    {context}
+  以下是历史记录
+    {history}
+`;
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    ["system", SYSTEM_TEMPLATE],
+    new MessagesPlaceholder("history"),
+    ["human", "{question}"],
+  ]);
+  //   console.log(prompt);
+  // 构建llm
   const llm = new ChatOpenAI({
     model: process.env.MODEL_NAME,
     configuration: {
@@ -81,62 +122,53 @@ export async function chat(qs: string) {
     },
   });
 
-  // 构建prompt
-//   const TEMPLATE = `
-// 你是一个熟知内部知识库的机器人，你在回答时会引用知识库，并擅长通过自己的总结归纳，组织语言给出答案。
-// 并且回答时仅根据知识库，尽可能回答用户问题，如果知识库中没有相关内容，你可以回答“原文中没有相关内容”，不要回答知识库以外的内容。
-
-// 以下是知识库中跟用户回答相关的内容：
-// {context}
-
-// 现在，你需要基于知识库，回答以下问题：
-// {question}`;
-
-const SYSTEM_TEMPLATE = `
-你是一个熟知内部知识库的机器人，你在回答时会引用知识库，并擅长通过自己的总结归纳，组织语言给出答案。
-并且回答时仅根据知识库，尽可能回答用户问题，如果知识库中没有相关内容，你可以回答“原文中没有相关内容”，不要回答知识库以外的内容。
-
-以下是知识库中跟用户回答相关的内容：
-{context}
-
-现在，你需要基于知识库，回答用户的问题。
-`
-
-  // const prompt = ChatPromptTemplate.fromTemplate(TEMPLATE);
-  const prompt = ChatPromptTemplate.fromMessages([
-    ["system", SYSTEM_TEMPLATE],
-    ["human", "{question}"],
-  ]);
-  //   console.log(prompt);
-
-  const outputParser = new StringOutputParser();
-
   // 构建chain
   const chain = RunnableSequence.from([
-    {
-      context: () => context,
-      question: (input: any) => input.question,
-    },
+    // {
+    //   context: contextRetrieverChain,
+    //   question: (input: any) => input.question,
+    // },
+    RunnablePassthrough.assign({
+      question: rephraseChain,
+    }),
+    RunnablePassthrough.assign({
+      context: contextRetrieverChain,
+    }),
     prompt,
     llm,
-    outputParser,
+    new StringOutputParser(),
   ]);
 
-  const rst = await chain.invoke({
-    question: qs,
+  const chainWithHistory = new RunnableWithMessageHistory({
+    runnable: chain,
+    getMessageHistory: (sessionId) => new JSONChatHistory({ sessionId }),
+    inputMessagesKey: "question",
+    historyMessagesKey: "history",
   });
-  console.log('===========\n')
-  console.log(rst);
 
-  // for await (const chunk of await chain.stream({ question: qs })) {
+  // const rst = await chain.invoke({
+  //   question: qs,
+  // });
+  // console.log("===========\n");
+  // console.log(rst);
+
+  // for await (const chunk of await chainWithHistory.stream(
+  //   { question: qs },
+  //   {
+  //     configurable: { sessionId: "test-history" },
+  //   }
+  // )) {
   //   console.log(chunk);
   // }
+  return await chainWithHistory.stream(
+    { question: qs },
+    { configurable: { sessionId: "chat-history" } }
+  );
 }
 
+// async function main() {
+//   // await buildVectorStore();
+//   await chat("选修课有哪些？");
+// }
 
-async function main() {
-  // await buildVectorStore();
-  await chat("选修课有哪些？");
-}
-
-main();
+// main();
