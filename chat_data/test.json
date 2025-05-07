@@ -2,6 +2,60 @@
   {
     "type": "human",
     "data": {
+      "content": "谢谢",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "谢谢",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "谢谢",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
       "content": "Hi, 我叫小明",
       "additional_kwargs": {},
       "response_metadata": {}
@@ -20,7 +74,7 @@
   {
     "type": "human",
     "data": {
-      "content": "我是谁？",
+      "content": "谢谢",
       "additional_kwargs": {},
       "response_metadata": {}
     }
@@ -28,7 +82,7 @@
   {
     "type": "ai",
     "data": {
-      "content": "你是小明。",
+      "content": "不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！",
       "tool_calls": [],
       "invalid_tool_calls": [],
       "additional_kwargs": {},
@@ -56,7 +110,7 @@
   {
     "type": "human",
     "data": {
-      "content": "我是谁？",
+      "content": "Hi, 我叫小明",
       "additional_kwargs": {},
       "response_metadata": {}
     }
@@ -64,7 +118,79 @@
   {
     "type": "ai",
     "data": {
-      "content": "你是小明。",
+      "content": "你好",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Hi, 我叫小明",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "你好",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "谢谢",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "AI: 不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Hi, 我叫小明",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "你好",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "谢谢",
+      "additional_kwargs": {},
+      "response_metadata": {}
+    }
+  },
+  {
+    "type": "ai",
+    "data": {
+      "content": "不客气，很高兴能够帮助到您！如果您有任何其他问题或需要进一步的帮助，请随时告诉我。祝您一切顺利！\n\n（注意：在对话的最后部分，AI重复了“您好”，这可能是由于系统设置或编程错误导致的。正常的对话中，AI应该在每次人类说话后都做出相应的回应。）",
       "tool_calls": [],
       "invalid_tool_calls": [],
       "additional_kwargs": {},
