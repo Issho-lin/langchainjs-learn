@@ -3,7 +3,9 @@
   "specifiers": {
     "npm:@langchain/core@*": "0.3.47_zod@3.24.3",
     "npm:@langchain/openai@*": "0.5.6_@langchain+core@0.3.47__openai@4.96.0___zod@3.24.3__zod@3.24.3_zod@3.24.3_openai@4.96.0__zod@3.24.3",
-    "npm:langchain@*": "0.3.24_@langchain+core@0.3.47__zod@3.24.3_zod@3.24.3"
+    "npm:langchain@*": "0.3.24_@langchain+core@0.3.47__zod@3.24.3_zod@3.24.3",
+    "npm:zod-to-json-schema@*": "3.24.5_zod@3.24.3",
+    "npm:zod@*": "3.24.3"
   },
   "npm": {
     "@cfworker/json-schema@4.1.1": {
@@ -457,7 +459,9 @@
       "npm:langchain@*",
       "npm:mammoth@*",
       "npm:officeparser@*",
+      "npm:openai@*",
       "npm:pdf-parse@*",
+      "npm:zod-to-json-schema@*",
       "npm:zod@*"
     ]
   }

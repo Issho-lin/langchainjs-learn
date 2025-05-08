@@ -12,7 +12,9 @@
         "mammoth": "npm:/mammoth",
         "officeparser": "npm:/officeparser",
         "ignore": "npm:/ignore",
-        "cheerio": "npm:/cheerio"
+        "cheerio": "npm:/cheerio",
+        "openai": "npm:/openai",
+        "zod-to-json-schema": "npm:/zod-to-json-schema"
     },
     "deno.enable": true
 }

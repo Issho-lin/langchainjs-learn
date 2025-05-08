@@ -26,8 +26,8 @@ export class JSONChatHistory extends BaseListChatMessageHistory  {
   constructor(fields: JSONChatHistoryInput) {
     super(fields);
     this.sessionId = fields.sessionId;
-    this.dir = path.resolve(__dirname, '../../', fields.dir ?? "chat_data")
-    console.log("chat history dir:", process.cwd())
+    this.dir = path.resolve('../../', fields.dir ?? "chat_data")
+    // console.log("chat history dir:", process.cwd())
   }
 
   async getMessages(): Promise<BaseMessage[]> {
