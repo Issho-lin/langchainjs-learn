@@ -14,6 +14,7 @@ import {
 } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { JSONChatHistory } from "./history/index";
+import { ChatTencentHunyuan } from '@langchain/community/chat_models/tencent_hunyuan'
 
 async function buildVectorStore() {
   const embeddings = new OpenAIEmbeddings({
@@ -103,8 +104,6 @@ export async function chat(qs: string) {
 并且回答时仅根据知识库，尽可能回答用户问题，如果知识库中没有相关内容，你可以从历史记录中找答案，如果历史记录也没有相关内容，你可以回答“原文中没有相关内容”，不要回答知识库以外的内容。
  以下是原文中跟用户回答相关的内容：
     {context}
-  以下是历史记录
-    {history}
 `;
 
   const prompt = ChatPromptTemplate.fromMessages([
@@ -166,9 +165,9 @@ export async function chat(qs: string) {
   );
 }
 
-// async function main() {
-//   // await buildVectorStore();
-//   await chat("选修课有哪些？");
-// }
+async function main() {
+  // await buildVectorStore();
+  await chat("选修课有哪些？");
+}
 
-// main();
+main();

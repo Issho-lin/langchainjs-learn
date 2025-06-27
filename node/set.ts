@@ -2,7 +2,7 @@
  * @Author: linqibin
  * @Date: 2025-04-28 09:30:26
  * @LastEditors: linqibin
- * @LastEditTime: 2025-04-28 10:05:24
+ * @LastEditTime: 2025-06-24 15:23:47
  * @Description:
  *
  * Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved.
@@ -25,8 +25,6 @@ const run = async () => {
 
   const splitDocs = await splitter.splitDocuments(docs);
 
-  console.log(process.env.EMBEDDING_MODEL_NAME);
-
   const embeddings = new OpenAIEmbeddings({
     model: process.env.EMBEDDING_MODEL_NAME,
     configuration: {
@@ -34,9 +32,10 @@ const run = async () => {
       apiKey: process.env.OPENAI_API_KEY,
     },
   });
+  console.log("embeddings", embeddings);
   const vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
 
-  const directory = "../db/data";
+  const directory = "../db/santi";
   await vectorStore.save(directory);
 };
 
