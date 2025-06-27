@@ -7,6 +7,9 @@ import {
   RunnablePassthrough,
   RunnableSequence,
   RunnableWithMessageHistory,
+  RunnableBranch,
+  RunnableLambda,
+  RunnableAssign
 } from "@langchain/core/runnables";
 import {
   ChatPromptTemplate,
