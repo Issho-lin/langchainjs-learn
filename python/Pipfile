@@ -15,6 +15,10 @@ langchain-text-splitters = "0.3.8"
 dashscope = "1.23.6"
 ipykernel = "*"
 jq = "*"
+tencentcloud-sdk-python = "*"
+pypdf = "*"
+unstructured = {extras = ["docx", "doc"], version = "*"}
+docx2txt = "*"
 
 [dev-packages]
 
