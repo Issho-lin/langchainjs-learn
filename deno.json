@@ -14,7 +14,8 @@
         "ignore": "npm:/ignore",
         "cheerio": "npm:/cheerio",
         "openai": "npm:/openai",
-        "zod-to-json-schema": "npm:/zod-to-json-schema"
+        "zod-to-json-schema": "npm:/zod-to-json-schema",
+        "pg": "npm:/pg"
     },
     "deno.enable": true
 }

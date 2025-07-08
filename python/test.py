@@ -1,9 +1,10 @@
-'''
-Author: linqibin
-Date: 2025-06-28 11:44:44
-LastEditors: linqibin
-LastEditTime: 2025-06-28 12:49:16
-Description: 
+def my_function(name,job): 
+	print("Welcome " + name + ", the " + job);
 
-Copyright (c) 2025 by linqibin@https://github.com/Issho-lin, All Rights Reserved. 
-'''
+my_function(name='Harry Potter',job='Wizard')
+
+def for_function():
+    for i in range(5):
+        print("这个数字是" + str(i))
+
+for_function()

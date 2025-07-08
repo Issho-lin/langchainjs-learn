@@ -1,3 +1,12 @@
+/*
+ * @Author: linqibin
+ * @Date: 2025-04-28 10:06:05
+ * @LastEditors: linqibin
+ * @LastEditTime: 2025-07-07 15:31:32
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved. 
+ */
 import { FaissStore } from "@langchain/community/vectorstores/faiss";
 import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
 import { MultiQueryRetriever } from "langchain/retrievers/multi_query";
@@ -19,6 +28,12 @@ async function run() {
   const vectorstore = await FaissStore.load(directory, embeddings);
 
   //   const retriever = vectorstore.asRetriever(2);
+
+  const rst = await vectorstore.similaritySearch("虚拟导购的技术实现", 2);
+
+  console.log(rst);
+
+  return
 
   const llm = new ChatOpenAI({
     model: process.env.MODEL_NAME,

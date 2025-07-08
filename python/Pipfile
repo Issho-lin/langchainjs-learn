@@ -4,7 +4,6 @@ verify_ssl = true
 name = "tsinghua"
 
 [packages]
-fastmcp = "2.9.2"
 openai = "1.93.0"
 requests = "2.32.4"
 langchain = "0.3.26"
@@ -19,6 +18,15 @@ tencentcloud-sdk-python = "*"
 pypdf = "*"
 unstructured = {extras = ["docx", "doc"], version = "*"}
 docx2txt = "*"
+beautifulsoup4 = "*"
+selenium = "*"
+playwright = "*"
+serpapi = "*"
+google-search-results = "*"
+langgraph = "*"
+fastmcp = "*"
+faiss-cpu = "*"
+langchain-postgres = "*"
 
 [dev-packages]
 

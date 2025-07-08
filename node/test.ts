@@ -2,12 +2,65 @@
  * @Author: linqibin
  * @Date: 2025-06-29 08:54:39
  * @LastEditors: linqibin
- * @LastEditTime: 2025-06-29 09:33:54
- * @Description: 
- * 
- * Copyright (c) 2025 by linqibin@https://github.com/Issho-lin, All Rights Reserved. 
+ * @LastEditTime: 2025-07-08 10:37:47
+ * @Description:
+ *
+ * Copyright (c) 2025 by linqibin@https://github.com/Issho-lin, All Rights Reserved.
  */
-import { ChatTencentHunyuan } from '@langchain/community/chat_models/tencent_hunyuan';
-import { AzureChatOpenAI } from '@langchain/openai'
+import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PoolConfig } from "pg";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { MultiQueryRetriever } from 'langchain/retrievers/multi_query'
+import { LLMChainExtractor } from 'langchain/retrievers/document_compressors/chain_extract'
+import { ContextualCompressionRetriever } from 'langchain/retrievers/contextual_compression'
 
-console.log(AzureChatOpenAI)
+const embeddings = new OpenAIEmbeddings({
+  model: process.env.EMBEDDING_MODEL_NAME,
+  configuration: {
+    baseURL: process.env.BASE_URL,
+    apiKey: process.env.OPENAI_API_KEY,
+  },
+});
+
+const config = {
+  postgresConnectionOptions: {
+    type: "postgres",
+    host: "116.198.244.42",
+    port: 5432,
+    user: "username",
+    password: "password",
+    database: "postgres",
+  } as PoolConfig,
+  tableName: "langchain_test_js",
+};
+
+async function run() {
+  // 加载知识库
+  const loader = new TextLoader("../documents/data.txt");
+  const docs = await loader.load();
+  // 切分（超出LLM上下文限制）
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 100,
+    chunkOverlap: 20,
+  });
+
+  const documents = await splitter.splitDocuments(docs);
+
+  const vectorStore = await PGVectorStore.initialize(embeddings, config);
+
+  await vectorStore.addDocuments(documents);
+
+  vectorStore.similaritySearch("你好", 1);
+
+  vectorStore.asRetriever(1)
+
+//   const compressor = LLMChainExtractor.fromLLM()
+//   const retriever = new ContextualCompressionRetriever({
+//     baseCompressor: compressor,
+//     baseRetriever: vectorStore.asRetriever(1),
+//   })
+}
+
+run();
