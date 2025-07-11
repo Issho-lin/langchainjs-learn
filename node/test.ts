@@ -15,6 +15,7 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { MultiQueryRetriever } from 'langchain/retrievers/multi_query'
 import { LLMChainExtractor } from 'langchain/retrievers/document_compressors/chain_extract'
 import { ContextualCompressionRetriever } from 'langchain/retrievers/contextual_compression'
+import { DynamicTool } from 'langchain/tools'
 
 const embeddings = new OpenAIEmbeddings({
   model: process.env.EMBEDDING_MODEL_NAME,
@@ -23,6 +24,16 @@ const embeddings = new OpenAIEmbeddings({
     apiKey: process.env.OPENAI_API_KEY,
   },
 });
+
+// const tool = new DynamicTool({
+//   name: 'Google Search',
+//   description: 'A tool that returns the length of a given string',
+//   func: async (input: string) => {
+//     console.log(input);
+//     return '5 Chinese Yuan'
+//   },
+//   returnDirect: true,
+// });
 
 const config = {
   postgresConnectionOptions: {
