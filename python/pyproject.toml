@@ -1,0 +1,13 @@
+[project]
+name = "python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asttokens>=3.0.0",
+    "comm>=0.2.3",
+    "langchain-tavily>=0.2.12",
+    "pdfminer-six>=20250506",
+    "pi-heif>=1.1.1",
+]

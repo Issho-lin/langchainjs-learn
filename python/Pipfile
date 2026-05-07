@@ -27,6 +27,11 @@ langgraph = "*"
 fastmcp = "*"
 faiss-cpu = "*"
 langchain-postgres = "*"
+pymongo = "*"
+langchain-experimental = "*"
+chromadb = "*"
+langchain-chroma = "*"
+onnxruntime = "*"
 
 [dev-packages]
 
